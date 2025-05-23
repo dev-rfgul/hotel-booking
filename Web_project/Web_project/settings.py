@@ -40,6 +40,18 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Base_App',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google'
+
+]
+SITE_ID = 1
+SOCIALACCOUNT_LOGIN_ON_GET = True
+LOGIN_REDIRECT_URL='home'
+AUTHENTICATION_BACKENDS=[
+    'allauth.account.auth_backends.AuthenticationBackend'
 ]
 
 MIDDLEWARE = [
@@ -50,6 +62,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'Web_project.urls'
@@ -131,3 +144,29 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+LOGIN_URL='userlogin',
+LOGOUT_URL='logout',
+# LOGIN_REDIRECT_URL='home',
+ACCOUNT_LOGOUT_REDIRECT_URL='userlogin'
+
+
+
+# Social login settings
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'APP': {
+            'client_id': '',
+            'secret': '',
+        },
+        'SCOPE': ['profile', 'email'],
+        'AUTH_PARAMS': {'access_type': 'online'},
+        'METHOD': 'oauth2',
+        'VERIFIED_EMAIL': True,
+    },
+ 
+}
+
+

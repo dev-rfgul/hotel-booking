@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
 from Base_App.views import HomeView, BookTableView, MenuView, AboutView, FeedbackView, Login, Signup_View
@@ -20,6 +20,7 @@ urlpatterns = [
     path('feedback/', FeedbackView, name='feedback'),
     path('login/',Login,name="login"),
     path('signup/', Signup_View, name='signup'),
+    path('accounts/',include("allauth.urls"))
 
 ]
 

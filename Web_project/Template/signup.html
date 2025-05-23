@@ -1,6 +1,11 @@
-{% extends "base.html" %} 
-{% load static %} 
-{% block status %}active{% endblock status %}
+{% extends "base.html" %}
+{% load socialaccount %}
+{% load static %}
+
+{% block status %}
+active
+{% endblock status %}
+
 {% block main %}
 <div class="container my-5">
   <div class="row justify-content-center">
@@ -8,9 +13,11 @@
       <div class="card shadow p-4">
         <h3 class="text-center mb-4">Create Account</h3>
 
-        {% if messages %} {% for message in messages %}
-        <div class="alert alert-danger">{{ message }}</div>
-        {% endfor %} {% endif %}
+        {% if messages %}
+          {% for message in messages %}
+            <div class="alert alert-danger">{{ message }}</div>
+          {% endfor %}
+        {% endif %}
 
         <form method="post">
           {% csrf_token %}
@@ -56,8 +63,16 @@
           </div>
           <button type="submit" class="btn btn-success w-100">Sign Up</button>
         </form>
+
+        <hr />
+        <div class="text-center my-3">or</div>
+
+        <a href="{% provider_login_url 'google' %}" class="btn btn-outline-primary w-100">
+          Signup with Google
+        </a>
+
       </div>
     </div>
   </div>
 </div>
-{% endblock %}
+{% endblock main %}
